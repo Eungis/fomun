@@ -18,6 +18,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.common.exceptions import TimeoutException
+
 @dataclass
 class NaverNewsRun():
     
@@ -146,9 +147,8 @@ class NaverNewsRun():
         # sort news list as descending order
         # & scroll down to get more news 
         self._click_sort_btn()._scroll_down()
-        
-        contents = self.extract_contents()
-        return contents
+
+        return self.extract_contents()
         
         
 if __name__ == "__main__":
