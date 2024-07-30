@@ -111,7 +111,7 @@ logging.info(f"User-agent: {user_agent}")
 # m_email/w_email: 신랑/신부 이메일
 # extra_info: 추가 입력 사항 (ex. 야외진행)
 form = ReservationForm(
-    wed_date="2025-08-02",
+    wed_date="2025-07-12",
     wed_time="5",
     m_name="로미오",
     m_phone="0101111111",
@@ -142,6 +142,14 @@ safe_click(driver, By.XPATH, f"//td/a[text()='{day}']")
 # 시간선택
 Select(driver.find_element(By.CSS_SELECTOR, "select.frm_select.snu_chk")).select_by_value(form.wed_time)
 
-# 정보 제출
-safe_click(driver, By.CSS_SELECTOR, "button.btn_submit")
-driver.quit()
+# ---------------------------------
+# !! 연습용 !! 실제 예약 진행 시 주석 처리하기 (#을 앞에 붙이기)
+while True:
+    continue
+# ---------------------------------
+
+# ---------------------------------
+# !! 실전용 !! 정보 제출 버튼 클릭으로, 실제 예약 진행 시 주석처리 해체하기
+# safe_click(driver, By.CSS_SELECTOR, "button.btn_submit")
+# driver.quit()
+# ---------------------------------
