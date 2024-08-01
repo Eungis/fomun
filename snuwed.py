@@ -1,3 +1,4 @@
+import sys
 import random
 import logging
 from typing import Union, Any
@@ -9,6 +10,9 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
 from selenium.webdriver.support import expected_conditions as EC
+
+# get running environment: dev or prod
+env = sys.argv[1]
 
 # initialize logger
 logging.basicConfig(
@@ -144,12 +148,26 @@ Select(driver.find_element(By.CSS_SELECTOR, "select.frm_select.snu_chk")).select
 
 # ---------------------------------
 # !! 연습용 !! 실제 예약 진행 시 주석 처리하기 (#을 앞에 붙이기)
-while True:
-    continue
-# ---------------------------------
-
-# ---------------------------------
+if env == "dev":
+    while True:
+        logger.info("To quit the browser, enter 'quit' in the terminal.")
+        value = input("")
+        if value == "quit":
+            driver.quit()
+            break
+        else:
+            logger.info(f"Input value `{value}` is not valid. Please enter the right value.")
+    
 # !! 실전용 !! 정보 제출 버튼 클릭으로, 실제 예약 진행 시 주석처리 해체하기
-# safe_click(driver, By.CSS_SELECTOR, "button.btn_submit")
-# driver.quit()
-# ---------------------------------
+elif env == "prod":
+    safe_click(driver, By.CSS_SELECTOR, "button.btn_submit")
+    
+    while True:
+        logger.info("To quit the browser, enter 'quit' in the terminal.")
+        value = input("")
+        if value == "quit":
+            driver.quit()
+            break
+        else:
+            logger.info(f"Input value `{value}` is not valid. Please enter the right value.")
+    
